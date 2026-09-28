@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexus AI — The intelligent platform for your team</title>
+<meta name="description" content="Nexus is an AI-powered SaaS platform that writes, summarises, translates and automates your workflows — all in one workspace.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06060E;
+  --bg2:#0A0A16;
+  --surface:#0E0E1C;
+  --surface2:#13132A;
+  --border:rgba(140,100,255,.12);
+  --border2:rgba(140,100,255,.25);
+  --ink:#EEEAF8;
+  --muted:#6B6880;
+  --accent:#8B5CF6;
+  --accent2:#A78BFA;
+  --glow:rgba(139,92,246,.18);
+  --cyan:#22D3EE;
+  --green:#34D399;
+  --f-head:'Instrument Serif',serif;
+  --f-body:'Instrument Sans',sans-serif;
+  --r:10px;
+  --max:1140px;
+  --g:clamp(1.25rem,4vw,2.5rem);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}ul{list-style:none;margin:0;padding:0}h1,h2,h3{margin:0}p{margin:0}button{font-family:inherit;cursor:pointer}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--g);padding-right:var(--g)}
+
+.mesh{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.mesh-g{position:absolute;border-radius:50%;filter:blur(100px);animation:meshmove 14s ease-in-out infinite}
+.mesh-g:nth-child(1){width:500px;height:500px;background:rgba(139,92,246,.08);top:-100px;left:-100px;animation-delay:0s}
+.mesh-g:nth-child(2){width:400px;height:400px;background:rgba(34,211,238,.05);bottom:-80px;right:-80px;animation-delay:-5s}
+.mesh-g:nth-child(3){width:350px;height:350px;background:rgba(139,92,246,.06);top:40%;left:40%;animation-delay:-9s}
+@keyframes meshmove{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.1)}66%{transform:translate(-30px,40px) scale(.95)}}
+
+nav,section,footer,main{position:relative;z-index:1}
+
+nav{position:sticky;top:0;z-index:50;border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+nav.sc{background:rgba(6,6,14,.88);backdrop-filter:blur(16px);border-bottom-color:var(--border)}
+.nav-row{display:flex;align-items:center;height:66px;gap:2rem}
+.n-logo{font-family:var(--f-body);font-weight:700;font-size:1.15rem;margin-right:auto;letter-spacing:-.02em;display:flex;align-items:center;gap:.4rem}
+.n-logo-dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);display:inline-block}
+.n-links{display:flex;gap:1.6rem;color:var(--muted);font-size:.88rem;font-weight:500}
+.n-links a:hover{color:var(--ink)}
+.n-btns{display:flex;gap:.7rem;align-items:center}
+.n-in{font-size:.85rem;font-weight:500;color:var(--muted);padding:.45rem .9rem;border:1px solid var(--border);border-radius:var(--r);transition:color .2s,border-color .2s}
+.n-in:hover{color:var(--ink);border-color:var(--border2)}
+.n-cta{font-size:.85rem;font-weight:600;padding:.5rem 1.1rem;border-radius:var(--r);background:var(--accent);color:#fff;border:none;transition:background .2s,transform .2s}
+.n-cta:hover{background:var(--accent2);transform:translateY(-1px)}
+.burger{display:none;background:none;border:0;padding:.3rem;cursor:pointer}
+.burger span{display:block;width:20px;height:1.5px;background:var(--ink);margin:5px 0}
+.mob{display:none;flex-direction:column;padding:0 var(--g) 1.5rem;gap:.1rem}
+.mob a{padding:.75rem 0;border-bottom:1px solid var(--border);color:var(--muted)}
+nav.open .mob{display:flex}
+
+.hero{text-align:center;padding:clamp(4rem,10vw,8rem) 0 clamp(3rem,6vw,5rem);position:relative}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse at 50% 0%,rgba(139,92,246,.15),transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem 1rem;border:1px solid var(--border2);border-radius:99px;font-size:.78rem;color:var(--accent2);margin-bottom:1.8rem;background:rgba(139,92,246,.06)}
+.hero-badge span{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block;box-shadow:0 0 6px var(--accent)}
+.hero h1{font-family:var(--f-head);font-size:clamp(3rem,2rem+5vw,6.5rem);font-style:italic;font-weight:400;line-height:1.02;letter-spacing:-.02em;color:var(--ink)}
+.hero h1 strong{font-style:normal;font-weight:700;color:var(--accent2)}
+.hero-sub{margin:1.8rem auto 0;color:var(--muted);font-size:1.1rem;max-width:52ch;line-height:1.75}
+.hero-btns{display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap;margin-top:2.2rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.6rem;border-radius:var(--r);font-weight:600;font-size:.9rem;border:1px solid transparent;transition:all .2s;font-family:var(--f-body)}
+.btn-pu{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 0 30px var(--glow)}
+.btn-pu:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn-ou{border-color:var(--border2);color:var(--ink)}
+.btn-ou:hover{border-color:var(--accent);color:var(--accent)}
+.hero-note{font-size:.8rem;color:var(--muted);margin-top:1rem}
+.hero-logos{display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
+.logo-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.hero-logo-item{font-size:.82rem;font-weight:600;color:rgba(255,255,255,.25)}
+
+.chat-demo{max-width:700px;margin:4rem auto 0;border:1px solid var(--border2);border-radius:20px;background:rgba(14,14,28,.8);backdrop-filter:blur(12px);box-shadow:0 40px 80px -30px rgba(0,0,0,.7),0 0 0 1px rgba(139,92,246,.06)}
+.chat-header{display:flex;align-items:center;gap:.75rem;padding:1rem 1.4rem;border-bottom:1px solid var(--border)}
+.chat-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--cyan));display:grid;place-items:center;font-size:.8rem;font-weight:700;color:#fff;flex-shrink:0}
+.chat-title{font-weight:600;font-size:.9rem}
+.chat-status{font-size:.75rem;color:var(--muted);display:flex;align-items:center;gap:.4rem}
+.chat-status-dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.chat-body{padding:1.2rem 1.4rem;display:flex;flex-direction:column;gap:.8rem;min-height:220px}
+.chat-msg{max-width:85%;padding:.7rem 1rem;border-radius:14px;font-size:.88rem;line-height:1.6}
+.chat-msg.ai{background:var(--surface2);border:1px solid var(--border);align-self:flex-start;border-radius:4px 14px 14px 14px}
+.chat-msg.user{background:var(--accent);color:#fff;align-self:flex-end;border-radius:14px 4px 14px 14px}
+.chat-foot{display:flex;gap:.7rem;padding:.8rem 1rem;border-top:1px solid var(--border)}
+.chat-input{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.6rem 1rem;font-size:.85rem;color:var(--ink);font-family:var(--f-body);outline:none;transition:border-color .2s}
+.chat-input:focus{border-color:var(--border2)}
+.chat-send{background:var(--accent);border:none;border-radius:10px;width:38px;height:38px;display:grid;place-items:center;transition:background .2s,transform .2s;flex-shrink:0}
+.chat-send:hover{background:var(--accent2);transform:scale(1.05)}
+.chat-send svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.typing-dots span{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--muted);animation:dot .9s ease-in-out infinite}
+.typing-dots span:nth-child(2){animation-delay:.18s}
+.typing-dots span:nth-child(3){animation-delay:.36s}
+@keyframes dot{0%,80%,100%{transform:scale(0);opacity:.4}40%{transform:scale(1);opacity:1}}
+
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.feat-card{background:rgba(14,14,28,.6);border:1px solid var(--border);border-radius:18px;padding:1.8rem;backdrop-filter:blur(8px);transition:border-color .3s,transform .3s}
+.feat-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.feat-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;margin-bottom:1.1rem}
+.feat-icon.pu{background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.25)}
+.feat-icon.cy{background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.2)}
+.feat-icon.gr{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.2)}
+.feat-title{font-weight:700;font-size:1.2rem;margin-bottom:.8rem;letter-spacing:-.01em}
+.feat-desc{font-size:.88rem;color:var(--muted);line-height:1.65}
+
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3rem}
+.stat-box{text-align:center;padding:2rem 1rem;border:1px solid var(--border);border-radius:16px;background:rgba(14,14,28,.6)}
+.stat-box .num{font-family:var(--f-head);font-size:3rem;font-style:italic;font-weight:400;color:var(--accent2);line-height:1;letter-spacing:-.03em}
+.stat-box .lbl{font-size:.82rem;color:var(--muted);margin-top:.5rem}
+
+.glass-wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:1.2rem;margin-top:3rem}
+.glass-card{background:rgba(14,14,28,.5);border:1px solid var(--border2);border-radius:20px;padding:clamp(1.5rem,3vw,2.2rem);backdrop-filter:blur(12px);overflow:hidden;position:relative}
+.glass-card::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;background:radial-gradient(circle,rgba(139,92,246,.12),transparent 70%);border-radius:50%;pointer-events:none}
+.glass-caption{font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;font-family:var(--f-body)}
+.glass-title{font-family:var(--f-head);font-size:clamp(1.5rem,2vw,2rem);font-style:italic;line-height:1.15;margin-bottom:1rem}
+.glass-card blockquote{margin:0;font-size:1.05rem;line-height:1.7;color:var(--ink);font-weight:300;font-style:italic;border-left:2px solid var(--accent);padding-left:1rem}
+.glass-author{display:flex;align-items:center;gap:.7rem;margin-top:1.4rem}
+.glass-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--cyan));display:grid;place-items:center;font-size:.78rem;font-weight:700;color:#fff;flex-shrink:0}
+.glass-name{font-weight:600;font-size:.88rem}
+.glass-role{font-size:.75rem;color:var(--muted)}
+.usage-bars{margin-top:1.2rem;display:flex;flex-direction:column;gap:.7rem}
+.u-row{display:flex;align-items:center;gap:.8rem;font-size:.82rem}
+.u-label{width:90px;color:var(--muted);flex-shrink:0}
+.u-bar-wrap{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.u-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--cyan))}
+.u-pct{color:var(--accent);width:36px;text-align:right;flex-shrink:0}
+
+.price-toggle{display:inline-flex;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:4px;margin:2rem auto 0;display:flex;width:fit-content}
+.pt-btn{background:transparent;border:0;padding:.55rem 1.2rem;border-radius:9px;font-size:.85rem;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s}
+.pt-btn.on{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(139,92,246,.3)}
+.pt-note{color:var(--green);font-size:.75rem;margin-left:.3rem}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2rem}
+.pg{background:rgba(14,14,28,.7);border:1px solid var(--border);border-radius:18px;padding:1.8rem;display:flex;flex-direction:column;position:relative;backdrop-filter:blur(8px);transition:border-color .25s}
+.pg:hover{border-color:var(--border2)}
+.pg.pop{border-color:var(--accent);box-shadow:0 0 40px rgba(139,92,246,.12)}
+.pg-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.72rem;font-weight:700;padding:.2rem .85rem;border-radius:99px;white-space:nowrap}
+.pg-name{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem}
+.pg-price{display:flex;align-items:baseline;gap:.3rem;margin-bottom:.3rem}
+.pg-price b{font-family:var(--f-head);font-size:2.8rem;font-style:italic;font-weight:400;line-height:1;letter-spacing:-.02em}
+.pg-price span{color:var(--muted);font-size:.88rem}
+.pg-desc{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem}
+.pg-feat{display:flex;flex-direction:column;gap:.5rem;flex:1;margin-bottom:1.8rem}
+.pg-feat li{display:flex;align-items:flex-start;gap:.55rem;font-size:.85rem;color:var(--muted)}
+.pg-feat li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:.55rem}
+.pg-btn{display:block;text-align:center;padding:.8rem;border-radius:var(--r);font-weight:600;font-size:.88rem;border:1px solid var(--border2);color:var(--ink);transition:all .2s}
+.pg-btn:hover{border-color:var(--accent);color:var(--accent)}
+.pg.pop .pg-btn{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pg.pop .pg-btn:hover{background:var(--accent2)}
+
+.faq{max-width:740px;margin:3rem auto 0}
+.faq details{border-top:1px solid var(--border)}
+.faq details:last-child{border-bottom:1px solid var(--border)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:1rem;padding:1.3rem 0;font-weight:600;font-size:.98rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font-size:1.5rem;line-height:1;transition:transform .2s;color:var(--accent)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:1.3rem;color:var(--muted);max-width:60ch;font-size:.9rem;line-height:1.7}
+
+.cta-sec{text-align:center;padding:clamp(4rem,9vw,7rem) 0;background:var(--bg2);position:relative;overflow:hidden}
+.cta-sec::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(139,92,246,.12),transparent 70%);pointer-events:none}
+.cta-sec h2{font-family:var(--f-head);font-size:clamp(2.5rem,4vw,4.5rem);font-style:italic;font-weight:400;line-height:1.08}
+.cta-sec h2 strong{font-style:normal;font-weight:700;color:var(--accent2)}
+
+footer{border-top:1px solid var(--border);padding:2.5rem 0 2rem}
+.foot-row{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.foot-logo{font-weight:700;font-size:1.05rem;display:flex;align-items:center;gap:.4rem}
+.foot-links{display:flex;gap:1.5rem;font-size:.85rem;color:var(--muted);flex-wrap:wrap}
+.foot-links a:hover{color:var(--ink)}
+.foot-legal{display:flex;justify-content:space-between;margin-top:1.5rem;font-size:.78rem;color:var(--muted);flex-wrap:wrap;gap:.5rem}
+
+.sec{padding:clamp(4rem,9vw,7rem) 0}
+.sec-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.25rem .8rem;border:1px solid var(--border2);border-radius:99px;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;background:rgba(139,92,246,.06)}
+h2.ht{font-size:clamp(2rem,1.2rem+3vw,3.5rem);font-family:var(--f-head);font-style:italic;font-weight:400;line-height:1.1}
+h2.ht strong{font-style:normal;font-weight:700;color:var(--accent2)}
+
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.rv.on{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .feat-grid,.stats-row,.price-grid,.glass-wrap{grid-template-columns:1fr 1fr}
+  .n-links,.n-btns{display:none}
+  .burger{display:block}
+}
+@media(max-width:560px){
+  .feat-grid,.stats-row,.price-grid{grid-template-columns:1fr}
+  .glass-wrap{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="mesh">
+  <div class="mesh-g"></div>
+  <div class="mesh-g"></div>
+  <div class="mesh-g"></div>
+</div>
+
+<nav id="nnav">
+  <div class="wrap nav-row">
+    <span class="n-logo"><span class="n-logo-dot"></span>Nexus</span>
+    <div class="n-links">
+      <a href="#features">Features</a>
+      <a href="#social-proof">Customers</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="n-btns">
+      <a href="#" class="n-in">Sign in</a>
+      <button class="n-cta" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Try free</button>
+    </div>
+    <button class="burger" id="nbrgr"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mob wrap">
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-badge"><span></span>Now with GPT-5 integration</div>
+    <h1>Your team,<br><strong>10× smarter.</strong></h1>
+    <p class="hero-sub">Nexus is the AI-powered workspace that writes, summarises, translates and automates — so your team can focus on work that matters.</p>
+    <div class="hero-btns">
+      <a href="#pricing" class="btn btn-pu">Start free — no card needed</a>
+      <a href="#features" class="btn btn-ou">Explore features</a>
+    </div>
+    <p class="hero-note">Free 14-day trial on all plans. Cancel any time.</p>
+    <div class="hero-logos">
+      <span class="logo-label">Trusted by teams at</span>
+      <span class="hero-logo-item">Stripe</span>
+      <span class="hero-logo-item">Notion</span>
+      <span class="hero-logo-item">Linear</span>
+      <span class="hero-logo-item">Vercel</span>
+      <span class="hero-logo-item">Figma</span>
+    </div>
+
+    <div class="chat-demo rv">
+      <div class="chat-header">
+        <div class="chat-av">N</div>
+        <div>
+          <div class="chat-title">Nexus AI</div>
+          <div class="chat-status"><span class="chat-status-dot"></span>Active</div>
+        </div>
+      </div>
+      <div class="chat-body" id="chat-body">
+        <div class="chat-msg user">Summarise our Q3 report into 3 bullet points</div>
+        <div class="chat-msg ai" id="ai-msg1" style="display:none"></div>
+        <div class="chat-msg user" id="user-msg2" style="display:none">Translate it to Spanish</div>
+        <div class="chat-msg ai" id="ai-msg2" style="display:none"></div>
+      </div>
+      <div class="chat-foot">
+        <input class="chat-input" placeholder="Ask Nexus anything..." id="chat-inp">
+        <button class="chat-send" id="chat-btn">
+          <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="features">
+  <div class="wrap">
+    <div class="sec-badge rv">Features</div>
+    <h2 class="ht rv">Everything your team<br><strong>needs to move fast.</strong></h2>
+    <div class="feat-grid">
+      <div class="feat-card rv">
+        <div class="feat-title">AI Writing</div>
+        <div class="feat-desc">Generate blog posts, emails, reports and social content with one prompt. Edit in real-time with your team.</div>
+      </div>
+      <div class="feat-card rv" style="transition-delay:.07s">
+        <div class="feat-title">Instant Translation</div>
+        <div class="feat-desc">Translate any document into 60+ languages while preserving formatting, tone and context.</div>
+      </div>
+      <div class="feat-card rv" style="transition-delay:.14s">
+        <div class="feat-title">Workflow Automation</div>
+        <div class="feat-desc">Build no-code AI workflows that trigger on events — Slack messages, emails, form submissions.</div>
+      </div>
+      <div class="feat-card rv" style="transition-delay:.07s">
+        <div class="feat-title">Data Analysis</div>
+        <div class="feat-desc">Upload a spreadsheet and ask questions in plain language. Nexus finds the patterns you'd miss.</div>
+      </div>
+      <div class="feat-card rv" style="transition-delay:.14s">
+        <div class="feat-title">Enterprise Security</div>
+        <div class="feat-desc">Your data never trains our models. SOC 2 Type II certified. GDPR compliant. Self-hosted option available.</div>
+      </div>
+      <div class="feat-card rv" style="transition-delay:.21s">
+        <div class="feat-title">150+ Integrations</div>
+        <div class="feat-desc">Connect Nexus to Notion, Slack, Jira, HubSpot, Salesforce and everything else in your stack.</div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-box rv"><div class="num">4.2M</div><div class="lbl">Documents created</div></div>
+      <div class="stat-box rv" style="transition-delay:.07s"><div class="num">98%</div><div class="lbl">Customer satisfaction</div></div>
+      <div class="stat-box rv" style="transition-delay:.14s"><div class="num">12×</div><div class="lbl">Faster than manual</div></div>
+      <div class="stat-box rv" style="transition-delay:.21s"><div class="num">150+</div><div class="lbl">Integrations</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="social-proof" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-badge rv">Social proof</div>
+    <h2 class="ht rv">Teams that never looked back.</h2>
+    <div class="glass-wrap">
+      <div class="glass-card rv">
+        <div class="glass-caption">Customer story</div>
+        <div class="glass-title">"We cut content production time from 5 days to half a day."</div>
+        <blockquote>Nexus didn't just speed things up — it made every piece of content better. Our engagement numbers have never been higher since we adopted it across the marketing team.</blockquote>
+        <div class="glass-author">
+          <div class="glass-av">JR</div>
+          <div>
+            <div class="glass-name">Jess Rivera</div>
+            <div class="glass-role">Head of Marketing, Pulse</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1.2rem">
+        <div class="glass-card rv" style="transition-delay:.1s">
+          <div class="glass-caption">Usage this week</div>
+          <div class="usage-bars">
+            <div class="u-row"><span class="u-label">Writing</span><div class="u-bar-wrap"><div class="u-bar" style="width:82%"></div></div><span class="u-pct">82%</span></div>
+            <div class="u-row"><span class="u-label">Translation</span><div class="u-bar-wrap"><div class="u-bar" style="width:64%"></div></div><span class="u-pct">64%</span></div>
+            <div class="u-row"><span class="u-label">Automation</span><div class="u-bar-wrap"><div class="u-bar" style="width:51%"></div></div><span class="u-pct">51%</span></div>
+            <div class="u-row"><span class="u-label">Analysis</span><div class="u-bar-wrap"><div class="u-bar" style="width:38%"></div></div><span class="u-pct">38%</span></div>
+          </div>
+        </div>
+        <div class="glass-card rv" style="transition-delay:.2s">
+          <blockquote style="margin:0;font-style:italic;color:var(--muted);font-size:.9rem;line-height:1.65;border-left:2px solid var(--accent);padding-left:.9rem">"Nexus has become the operating system of our team. We don't make a big decision without running it past the AI first."</blockquote>
+          <div class="glass-author">
+            <div class="glass-av">TK</div>
+            <div>
+              <div class="glass-name">Thomas Kim</div>
+              <div class="glass-role">CTO, Launchpad</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="pricing">
+  <div class="wrap" style="text-align:center">
+    <div class="sec-badge rv" style="margin:0 auto 0">Pricing</div>
+    <h2 class="ht rv" style="margin-top:.8rem">Plans that grow with you.</h2>
+    <div class="price-toggle rv" id="bill">
+      <button class="pt-btn on" data-p="m">Monthly</button>
+      <button class="pt-btn" data-p="y">Yearly<span class="pt-note">-20%</span></button>
+    </div>
+    <div class="price-grid">
+      <div class="pg rv">
+        <div class="pg-name">Starter</div>
+        <div class="pg-price"><b data-m="0" data-y="0">$0</b><span>/mo</span></div>
+        <p class="pg-desc">For individuals exploring AI writing.</p>
+        <ul class="pg-feat">
+          <li>5,000 AI words/month</li>
+          <li>3 projects</li>
+          <li>10 translations</li>
+          <li>Community support</li>
+        </ul>
+        <a href="#" class="pg-btn">Get started free</a>
+      </div>
+      <div class="pg pop rv" style="transition-delay:.08s">
+        <div class="pg-badge">Most popular</div>
+        <div class="pg-name">Pro</div>
+        <div class="pg-price"><b data-m="24" data-y="19">$24</b><span>/mo</span></div>
+        <p class="pg-desc">For professionals and growing teams.</p>
+        <ul class="pg-feat">
+          <li>Unlimited AI words</li>
+          <li>Unlimited projects</li>
+          <li>All 60+ languages</li>
+          <li>5 automation workflows</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#" class="pg-btn">Start 14-day free trial</a>
+      </div>
+      <div class="pg rv" style="transition-delay:.16s">
+        <div class="pg-name">Business</div>
+        <div class="pg-price"><b data-m="79" data-y="63">$79</b><span>/mo per team</span></div>
+        <p class="pg-desc">For teams that run on speed and data.</p>
+        <ul class="pg-feat">
+          <li>Everything in Pro</li>
+          <li>Unlimited automations</li>
+          <li>Data analysis mode</li>
+          <li>SSO / SAML</li>
+          <li>SOC 2 compliance</li>
+          <li>Dedicated support</li>
+        </ul>
+        <a href="#" class="pg-btn">Talk to sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq" style="background:var(--bg2);padding-bottom:clamp(4rem,9vw,7rem)">
+  <div class="wrap" style="text-align:center">
+    <div class="sec-badge rv" style="margin:0 auto">FAQ</div>
+    <h2 class="ht rv" style="margin-top:.8rem">Questions answered.</h2>
+    <div class="faq rv">
+      <details><summary>Is my data used to train your models?</summary><p>No. Your data is never used to train or fine-tune any AI model. All processing happens in isolated, encrypted environments. We are SOC 2 Type II certified.</p></details>
+      <details><summary>Can I switch plans at any time?</summary><p>Yes. Upgrade or downgrade whenever you need — changes take effect at the start of your next billing cycle. Downgrades never delete your data.</p></details>
+      <details><summary>What happens when I hit my word limit?</summary><p>On the Starter plan, AI writing pauses until your next billing cycle. You'll get an email with 3 days notice before the limit is reached. You can upgrade at any time to continue immediately.</p></details>
+      <details><summary>Do you offer a self-hosted option?</summary><p>Yes, the Business plan includes an on-premises deployment option with a dedicated Docker image and Helm chart for Kubernetes. Contact our sales team for details.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="cta-sec">
+  <div class="wrap">
+    <h2 class="rv">Start working<br><strong>smarter today.</strong></h2>
+    <div class="hero-btns rv" style="margin-top:2rem;transition-delay:.1s">
+      <a href="#pricing" class="btn btn-pu">Try Nexus free</a>
+      <a href="#features" class="btn btn-ou">Explore features</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <span class="foot-logo"><span class="n-logo-dot"></span>Nexus AI</span>
+      <div class="foot-links">
+        <a href="#">Product</a><a href="#">Pricing</a><a href="#">Blog</a><a href="#">Docs</a><a href="#">Privacy</a><a href="#">Terms</a>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>© 2026 Nexus AI Inc.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+
+var nnav=document.getElementById('nnav');
+addEventListener('scroll',function(){nnav.classList.toggle('sc',scrollY>8)},{passive:true});
+document.getElementById('nbrgr').onclick=function(){nnav.classList.toggle('open')};
+
+var bill='m';
+document.querySelectorAll('#bill .pt-btn').forEach(function(b){b.onclick=function(){
+  bill=b.dataset.p;
+  document.querySelectorAll('#bill .pt-btn').forEach(function(x){x.classList.toggle('on',x===b)});
+  document.querySelectorAll('.pg-price b').forEach(function(p){p.textContent='$'+p.dataset[bill]});
+}});
+
+var chat=[
+  {delay:1200,id:'ai-msg1',text:'• Q3 revenue grew 24% YoY, reaching $4.2M\n• Customer acquisition cost dropped by 18% due to improved campaigns\n• New product line contributed 31% of total quarterly revenue'},
+  {delay:4000,id:'user-msg2',show:true},
+  {delay:5500,id:'ai-msg2',text:'• Los ingresos del Q3 crecieron un 24% interanual, alcanzando $4.2M\n• El coste de adquisición de clientes bajó un 18% gracias a campañas optimizadas\n• La nueva línea de productos contribuyó el 31% de los ingresos totales del trimestre'},
+];
+chat.forEach(function(step){
+  setTimeout(function(){
+    var el=document.getElementById(step.id);
+    if(!el)return;
+    el.style.display='block';
+    if(step.text){
+      var lines=step.text.split('\n');
+      lines.forEach(function(l,i){
+        setTimeout(function(){
+          el.textContent=(el.textContent?el.textContent+'\n':'')+l;
+        },i*160);
+      });
+    }
+  },step.delay);
+});
+
+document.getElementById('chat-btn').onclick=function(){
+  var inp=document.getElementById('chat-inp');
+  var val=inp.value.trim();
+  if(!val)return;
+  var body=document.getElementById('chat-body');
+  var um=document.createElement('div');um.className='chat-msg user';um.textContent=val;body.appendChild(um);
+  inp.value='';
+  var typing=document.createElement('div');typing.className='chat-msg ai';
+  typing.innerHTML='<div class="typing-dots"><span></span><span></span><span></span></div>';
+  body.appendChild(typing);body.scrollTop=body.scrollHeight;
+  setTimeout(function(){
+    typing.innerHTML='I\'ve processed your request. Here\'s what I found based on your input — feel free to ask a follow-up!';
+    body.scrollTop=body.scrollHeight;
+  },1800);
+};
+document.getElementById('chat-inp').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('chat-btn').click()});
+
+if('IntersectionObserver' in window){
+  var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('on');obs.unobserve(x.target)}})},{rootMargin:'0px 0px -60px 0px',threshold:.04});
+  document.querySelectorAll('.rv').forEach(function(el){obs.observe(el)});
+}else document.querySelectorAll('.rv').forEach(function(el){el.classList.add('on')});
+</script>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jacob — Custom Web Developer & Front-End Engineer</title>
+<meta name="description" content="Jacob — custom web developer with 10+ years of experience. Builds premium landing pages, SaaS platforms, Telegram Web Apps and payment integrations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="logo">
+      <span class="logo-dot"></span>
+      Jacob
+    </a>
+
+    <ul class="nav-tabs" id="navTabs">
+      <li><a href="#home"    class="tab" data-tab="home">Home</a></li>
+      <li><a href="#about"   class="tab" data-tab="about">About</a></li>
+      <li><a href="#work"    class="tab" data-tab="work">Work</a></li>
+      <li><a href="#contact" class="tab" data-tab="contact">Contact</a></li>
+    </ul>
+
+    <a href="#contact" class="nav-cta">Hire me</a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <ul class="nav-tabs-mobile" id="navTabsMobile">
+    <li><a href="#home"    class="tab">Home</a></li>
+    <li><a href="#about"   class="tab">About</a></li>
+    <li><a href="#work"    class="tab">Work</a></li>
+    <li><a href="#contact" class="tab">Contact</a></li>
+  </ul>
+</nav>
+
+<header id="home" class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Available for freelance</div>
+      <h1 class="hero-title">
+        Custom&nbsp;web<br>
+        <span class="accent-word">development</span><br>
+        since age&nbsp;9.
+      </h1>
+      <p class="hero-lede">
+        I build premium landing pages, SaaS platforms and Telegram Web Apps — from pixel-perfect UI to payment integrations that actually ship.
+      </p>
+      <div class="hero-actions">
+        <a href="#work"    class="btn btn-primary">View my work</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">10+</div>
+          <div class="hero-stat-label">Years coding</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">40+</div>
+          <div class="hero-stat-label">Projects shipped</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">8</div>
+          <div class="hero-stat-label">Payment APIs integrated</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="card-preview-grid"></div>
+
+      <div class="hero-card hero-card-main">
+        <div class="card-label">// portfolio.js</div>
+        <div class="code-line"><span class="kw">const</span> dev = {</div>
+        <div class="code-line">&nbsp;&nbsp;name: <span class="str">'Jacob'</span>,</div>
+        <div class="code-line">&nbsp;&nbsp;since: <span class="str">'2015'</span>,</div>
+        <div class="code-line">&nbsp;&nbsp;stack: [<span class="str">'HTML'</span>, <span class="str">'CSS'</span>, <span class="str">'JS'</span>],</div>
+        <div class="code-line">&nbsp;&nbsp;<span class="fn">payment</span>: <span class="str">'Stripe, TON, Crypto'</span>,</div>
+        <div class="code-line"><span class="cm">&nbsp;&nbsp;// ships clean code ✓</span></div>
+        <div class="code-line">};</div>
+      </div>
+
+      <div class="hero-card hero-card-badge">
+        <div class="badge-title">Avg. load time</div>
+        <div class="badge-value">0.8s</div>
+        <div class="badge-sub">Lighthouse 98 / 100</div>
+      </div>
+
+      <div class="hero-card hero-card-small">
+        <div class="card-small-label">Tech stack</div>
+        <div class="tech-stack">
+          <span class="tech-pill">HTML5</span>
+          <span class="tech-pill">CSS3</span>
+          <span class="tech-pill">JS</span>
+          <span class="tech-pill">Stripe</span>
+          <span class="tech-pill">TON</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="about" class="about">
+  <div class="about-inner">
+    <div class="about-text reveal">
+      <h2 class="section-title">Code-first.<br>Design-obsessed.</h2>
+      <p>
+        I started writing code at <span class="about-highlight">9 years old</span> — not because someone told me to, but because I wanted to build things that worked. Today I design and develop custom web experiences that combine sharp aesthetics with solid engineering.
+      </p>
+      <p>
+        My specialty is integrating complex payment systems — <span class="about-highlight">Stripe, TON blockchain, crypto gateways</span> — into clean, conversion-focused interfaces. Every project I ship is hand-coded, not templated.
+      </p>
+
+      <div class="about-timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2015</div>
+          <div class="timeline-desc">First website built — HTML & CSS from scratch at age 9.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2019</div>
+          <div class="timeline-desc">First commercial project: landing page for a local business.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2022</div>
+          <div class="timeline-desc">Shipped first Telegram Web App with crypto payment integration.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2024</div>
+          <div class="timeline-desc">Expanded to SaaS dashboards and complex multi-page platforms.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">Now</div>
+          <div class="timeline-desc">40+ projects delivered. Open for new freelance work.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-skills reveal" style="transition-delay:0.15s">
+      <div class="skills-heading">Skills & tools</div>
+      <div class="skills-grid">
+        <div class="skill-item" data-pct="96">
+          <div class="skill-name">HTML / CSS</div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" style="--pct:96%"></div></div>
+        </div>
+        <div class="skill-item" data-pct="90">
+          <div class="skill-name">JavaScript</div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" style="--pct:90%"></div></div>
+        </div>
+        <div class="skill-item" data-pct="85">
+          <div class="skill-name">UI/UX Design</div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" style="--pct:85%"></div></div>
+        </div>
+        <div class="skill-item" data-pct="82">
+          <div class="skill-name">Stripe API</div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" style="--pct:82%"></div></div>
+        </div>
+        <div class="skill-item" data-pct="78">
+          <div class="skill-name">TON / Crypto</div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" style="--pct:78%"></div></div>
+        </div>
+        <div class="skill-item" data-pct="80">
+          <div class="skill-name">Telegram Web App</div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" style="--pct:80%"></div></div>
+        </div>
+        <div class="skill-item" data-pct="75">
+          <div class="skill-name">Git / GitHub</div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" style="--pct:75%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="section work">
+  <div class="reveal">
+    <h2 class="section-title">Selected work</h2>
+    <p class="section-sub">Hand-coded projects across three disciplines — from quick business landings to full SaaS platforms.</p>
+  </div>
+
+  <div class="filter-bar" id="filterBar" role="tablist">
+    <button class="filter-btn active" data-filter="all"    id="filter-all"     role="tab" aria-selected="true">
+      All <span class="filter-count">9</span>
+    </button>
+    <button class="filter-btn"        data-filter="basic"  id="filter-basic"   role="tab" aria-selected="false">
+      Basic Solutions <span class="filter-count">3</span>
+    </button>
+    <button class="filter-btn"        data-filter="premium" id="filter-premium" role="tab" aria-selected="false">
+      Premium Projects <span class="filter-count">4</span>
+    </button>
+    <button class="filter-btn"        data-filter="saas"   id="filter-saas"    role="tab" aria-selected="false">
+      Telegram / SaaS <span class="filter-count">2</span>
+    </button>
+  </div>
+
+  <div class="projects-grid" id="projectsGrid">
+
+    <article class="project-card reveal" data-category="basic">
+      <a href="coffee.html" target="_blank" rel="noopener" class="card-preview preview-coffee" aria-label="Open Wren & Co. project">
+        <div class="card-preview-inner-grid"></div>
+        <span class="card-preview-label">Wren&nbsp;&amp;&nbsp;Co.</span>
+      </a>
+      <div class="card-body">
+        <div class="card-category">Basic Solution</div>
+        <div class="card-title">Neighbourhood Coffee Shop Landing</div>
+        <div class="card-desc">Warm single-page site built around the menu and story. Typeface and palette that feels hand-poured.</div>
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="card-tag">HTML</span>
+            <span class="card-tag">CSS</span>
+            <span class="card-tag">Landing</span>
+          </div>
+          <a href="coffee.html" class="card-link" target="_blank" rel="noopener">
+            View <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card reveal" data-category="basic" style="transition-delay:0.07s">
+      <a href="barber.html" target="_blank" rel="noopener" class="card-preview preview-barber" aria-label="Open Iron & Fade project">
+        <div class="card-preview-inner-grid"></div>
+        <span class="card-preview-label">Iron&nbsp;&amp;&nbsp;Fade</span>
+      </a>
+      <div class="card-body">
+        <div class="card-category">Basic Solution</div>
+        <div class="card-title">Modern Barbershop Landing Page</div>
+        <div class="card-desc">Dark, confident one-pager built around price list and a clear booking path — brass and shadow aesthetic.</div>
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="card-tag">HTML</span>
+            <span class="card-tag">CSS</span>
+            <span class="card-tag">Dark UI</span>
+          </div>
+          <a href="barber.html" class="card-link" target="_blank" rel="noopener">
+            View <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card reveal" data-category="basic" style="transition-delay:0.14s">
+      <a href="paper.html" target="_blank" rel="noopener" class="card-preview preview-paper" aria-label="Open Paper & Pigment project">
+        <div class="card-preview-inner-grid"></div>
+        <span class="card-preview-label">Paper&nbsp;&amp;&nbsp;Pigment</span>
+      </a>
+      <div class="card-body">
+        <div class="card-category">Basic Solution</div>
+        <div class="card-title">Online Watercolour Course Landing</div>
+        <div class="card-desc">Conversion-focused page that answers three questions fast: what you'll learn, what it costs, why trust the instructor.</div>
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="card-tag">HTML</span>
+            <span class="card-tag">CSS</span>
+            <span class="card-tag">Course</span>
+          </div>
+          <a href="paper.html" class="card-link" target="_blank" rel="noopener">
+            View <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card reveal" data-category="premium" style="transition-delay:0.07s">
+      <a href="stint.html" target="_blank" rel="noopener" class="card-preview preview-stint" aria-label="Open Stint project">
+        <div class="card-preview-inner-grid"></div>
+        <span class="card-preview-label">Stint — Time Tracker</span>
+      </a>
+      <div class="card-body">
+        <div class="card-category cat-premium">Premium Project</div>
+        <div class="card-title">Freelance Time Tracking SaaS</div>
+        <div class="card-desc">Full product landing with live timer demo, interactive feature tabs, pricing toggle and testimonials.</div>
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="card-tag">SaaS</span>
+            <span class="card-tag">Interactive</span>
+            <span class="card-tag">Pricing</span>
+          </div>
+          <a href="stint.html" class="card-link" target="_blank" rel="noopener">
+            View <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card reveal" data-category="premium" style="transition-delay:0.14s">
+      <a href="vault.html" target="_blank" rel="noopener" class="card-preview preview-vault" aria-label="Open Vault project">
+        <div class="card-preview-inner-grid"></div>
+        <span class="card-preview-label">Vault — Design Studio</span>
+      </a>
+      <div class="card-body">
+        <div class="card-category cat-premium">Premium Project</div>
+        <div class="card-title">Premium Design Agency Landing</div>
+        <div class="card-desc">Scroll-animated agency site with split layouts, floating testimonials, custom cursor and animated hero.</div>
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="card-tag">Agency</span>
+            <span class="card-tag">Animations</span>
+            <span class="card-tag">Premium</span>
+          </div>
+          <a href="vault.html" class="card-link" target="_blank" rel="noopener">
+            View <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card reveal" data-category="premium" style="transition-delay:0.21s">
+      <a href="forge.html" target="_blank" rel="noopener" class="card-preview preview-forge" aria-label="Open Forge project">
+        <div class="card-preview-inner-grid"></div>
+        <span class="card-preview-label">Forge — Dev Tools</span>
+      </a>
+      <div class="card-body">
+        <div class="card-category cat-premium">Premium Project</div>
+        <div class="card-title">Developer Tools SaaS Platform</div>
+        <div class="card-desc">Dark-mode tech product with animated feature bento grid, interactive CLI demo widget and feature comparison table.</div>
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="card-tag">Dev Tools</span>
+            <span class="card-tag">Dark UI</span>
+            <span class="card-tag">Bento Grid</span>
+          </div>
+          <a href="forge.html" class="card-link" target="_blank" rel="noopener">
+            View <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card reveal" data-category="premium" style="transition-delay:0.28s">
+      <a href="nexus.html" target="_blank" rel="noopener" class="card-preview preview-nexus" aria-label="Open Nexus project">
+        <div class="card-preview-inner-grid"></div>
+        <span class="card-preview-label">Nexus — AI Platform</span>
+      </a>
+      <div class="card-body">
+        <div class="card-category cat-premium">Premium Project</div>
+        <div class="card-title">AI SaaS Platform Landing Page</div>
+        <div class="card-desc">High-end AI product with glassmorphism cards, animated gradient mesh, live chat demo widget and 3-tier pricing.</div>
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="card-tag">AI / SaaS</span>
+            <span class="card-tag">Glass UI</span>
+            <span class="card-tag">Gradient</span>
+          </div>
+          <a href="nexus.html" class="card-link" target="_blank" rel="noopener">
+            View <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card reveal" data-category="saas" style="transition-delay:0.07s">
+      <a href="tgpay.html" target="_blank" rel="noopener" class="card-preview preview-tgpay" aria-label="Open TGPay project">
+        <div class="card-preview-inner-grid"></div>
+        <span class="card-preview-label">TGPay — Bot Payments</span>
+      </a>
+      <div class="card-body">
+        <div class="card-category cat-saas">Telegram / SaaS</div>
+        <div class="card-title">Telegram Payment Bot Platform</div>
+        <div class="card-desc">Landing for a Telegram payment gateway with live bot widget demo, crypto dashboard mockup and API docs preview.</div>
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="card-tag">Telegram</span>
+            <span class="card-tag">Crypto</span>
+            <span class="card-tag">Web App</span>
+          </div>
+          <a href="tgpay.html" class="card-link" target="_blank" rel="noopener">
+            View <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-card reveal" data-category="saas" style="transition-delay:0.14s">
+      <a href="chainflow.html" target="_blank" rel="noopener" class="card-preview preview-chainflow" aria-label="Open ChainFlow project">
+        <div class="card-preview-inner-grid"></div>
+        <span class="card-preview-label">ChainFlow — DeFi</span>
+      </a>
+      <div class="card-body">
+        <div class="card-category cat-saas">Telegram / SaaS</div>
+        <div class="card-title">DeFi Analytics SaaS Dashboard</div>
+        <div class="card-desc">Web3 analytics platform with animated charts, wallet connect widget, live token price ticker and staking calculator.</div>
+        <div class="card-footer">
+          <div class="card-tags">
+            <span class="card-tag">Web3</span>
+            <span class="card-tag">DeFi</span>
+            <span class="card-tag">Dashboard</span>
+          </div>
+          <a href="chainflow.html" class="card-link" target="_blank" rel="noopener">
+            View <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <h2 class="section-title">Let's build<br>something.</h2>
+      <p class="section-sub">Have a project in mind? I'm available for new freelance work — reach out through any channel.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-links reveal" style="transition-delay:0.1s">
+        <a href="Email: lesintigr@gmail.com" class="contact-link-item">
+          <div>
+            <div class="contact-link-platform">Email</div>
+            <div class="contact-link-value">lesintigr@gmail.com</div>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://t.me/Tolsty_Pelmen" target="_blank" rel="noopener" class="contact-link-item">
+          <div>
+            <div class="contact-link-platform">Telegram</div>
+            <div class="contact-link-value">@Tolsty_Pelmen</div>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="https://discord.com" target="_blank" rel="noopener" class="contact-link-item">
+          <div>
+            <div class="contact-link-platform">Discord</div>
+            <div class="contact-link-value">_pelmen_inside_</div>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="contact-availability reveal" style="transition-delay:0.2s">
+        <div class="avail-header">
+          <div class="avail-dot"></div>
+          <div class="avail-title">Currently available</div>
+        </div>
+        <p class="avail-desc">
+          Open for freelance projects starting immediately. Typical turnaround: 1–3 weeks depending on scope. Payment integrations and Telegram Web Apps are a speciality.
+        </p>
+        <ul class="avail-list">
+          <li class="avail-item">Landing pages & business websites</li>
+          <li class="avail-item">Premium SaaS & product landings</li>
+          <li class="avail-item">Telegram Web Apps & bots</li>
+          <li class="avail-item">Payment system integrations</li>
+          <li class="avail-item">Web3 / DeFi interfaces</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <span class="footer-mono">© 2026 Jacob</span>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

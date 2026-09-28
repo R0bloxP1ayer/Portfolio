@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forge — The CLI toolkit for modern teams</title>
+<meta name="description" content="Forge is a developer tools platform — automate deployments, manage secrets and ship code 3× faster.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080C0A;
+  --bg2:#0C110E;
+  --surface:#111812;
+  --surface2:#16201A;
+  --border:rgba(0,200,150,.08);
+  --border2:rgba(0,200,150,.18);
+  --ink:#E4EDE8;
+  --muted:#607870;
+  --accent:#00C896;
+  --accent2:#00F0B5;
+  --accent-dim:rgba(0,200,150,.12);
+  --red:#FF5252;
+  --blue:#60A5FA;
+  --yellow:#FCD34D;
+  --f-code:'JetBrains Mono',monospace;
+  --f-body:'Inter',sans-serif;
+  --r:8px;
+  --max:1140px;
+  --g:clamp(1.25rem,4vw,2.5rem);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17.5px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}ul{list-style:none;margin:0;padding:0}h1,h2,h3{margin:0}p{margin:0}button{font-family:inherit;cursor:pointer}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--g);padding-right:var(--g)}
+
+nav{position:sticky;top:0;z-index:50;border-bottom:1px solid transparent;transition:background .25s,border-color .25s}
+nav.scrolled{background:rgba(8,12,10,.9);backdrop-filter:blur(14px);border-bottom-color:var(--border)}
+.nav-row{display:flex;align-items:center;height:64px;gap:2rem}
+.n-logo{font-family:var(--f-code);font-weight:700;font-size:1.15rem;margin-right:auto;color:var(--ink);letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem}
+.n-logo span{color:var(--accent);font-size:.9rem}
+.n-links{display:flex;gap:1.5rem;color:var(--muted);font-size:.88rem;font-weight:500}
+.n-links a:hover{color:var(--ink)}
+.n-cta{display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;font-weight:600;padding:.5rem 1.1rem;border-radius:var(--r);background:var(--accent);color:#000;transition:background .2s,transform .2s;border:none}
+.n-cta:hover{background:var(--accent2);transform:translateY(-1px)}
+.burger{display:none;background:none;border:0;padding:.3rem;cursor:pointer}
+.burger span{display:block;width:20px;height:1.5px;background:var(--ink);margin:5px 0}
+.mob{display:none;flex-direction:column;padding:0 var(--g) 1.5rem;gap:.1rem}
+.mob a{padding:.8rem 0;border-bottom:1px solid var(--border);color:var(--muted)}
+nav.open .mob{display:flex}
+
+.hero{padding:clamp(3.5rem,9vw,6.5rem) 0 clamp(2rem,5vw,3.5rem);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(0,200,150,.07),transparent);pointer-events:none}
+.hero-label{font-family:var(--f-code);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
+.hero-label::before{content:'$';color:var(--accent);opacity:.5}
+.hero h1{font-size:clamp(2.8rem,1.5rem+5vw,5.5rem);font-weight:700;line-height:1.02;letter-spacing:-.04em;color:var(--ink)}
+.hero h1 .hl{color:var(--accent)}
+.hero-sub{margin-top:1.8rem;color:var(--muted);font-size:1.08rem;max-width:50ch;line-height:1.75}
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2.2rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.4rem;border-radius:var(--r);font-weight:600;font-size:.88rem;border:1px solid transparent;transition:all .2s;font-family:var(--f-body)}
+.btn-g{background:var(--accent);color:#000;border-color:var(--accent)}
+.btn-g:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn-o{border-color:var(--border2);color:var(--ink)}
+.btn-o:hover{border-color:var(--accent);color:var(--accent)}
+.hero-badges{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:2rem}
+.badge{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--muted)}
+.badge svg{width:14px;height:14px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.cli-demo{margin-top:3.5rem;border:1px solid var(--border2);border-radius:14px;overflow:hidden;background:var(--bg2);box-shadow:0 32px 64px -20px rgba(0,0,0,.6)}
+.cli-titlebar{display:flex;align-items:center;gap:.5rem;padding:.75rem 1rem;background:var(--surface);border-bottom:1px solid var(--border)}
+.cli-dot{width:10px;height:10px;border-radius:50%}
+.cli-dot.r{background:#FF5F56}.cli-dot.y{background:#FFBD2E}.cli-dot.g{background:#27C93F}
+.cli-title{font-family:var(--f-code);font-size:.75rem;color:var(--muted);margin:0 auto}
+.cli-body{padding:1.5rem;font-family:var(--f-code);font-size:.83rem;line-height:1.9;min-height:200px}
+.cli-prompt{color:var(--accent)}
+.cli-cmd{color:var(--ink)}
+.cli-out{color:var(--muted)}
+.cli-out.ok{color:var(--accent)}
+.cli-out.err{color:var(--red)}
+.cli-out.info{color:var(--blue)}
+.cli-cursor{display:inline-block;width:9px;height:1.1em;background:var(--accent);vertical-align:text-bottom;animation:blink .9s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:auto;gap:1.2rem;margin-top:3rem}
+.bc{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;overflow:hidden;position:relative;transition:border-color .25s,transform .25s}
+.bc:hover{border-color:var(--border2);transform:translateY(-2px)}
+.bc.c2{grid-column:span 2}.bc.c3{grid-column:span 3}.bc.c4{grid-column:span 4}.bc.c6{grid-column:span 6}
+.bc-icon{font-size:1.5rem;margin-bottom:.9rem}
+.bc-title{font-weight:700;font-size:1.2rem;line-height:1.25;letter-spacing:-.01em;margin-bottom:.6rem}
+.bc-desc{font-size:.83rem;color:var(--muted);line-height:1.6}
+.bc-code{font-family:var(--f-code);font-size:.75rem;color:var(--accent);margin-top:.8rem;line-height:1.7}
+.bc-code .kw{color:var(--blue)}.bc-code .str{color:var(--yellow)}.bc-code .fn{color:var(--accent2)}
+.stat-num{font-family:var(--f-code);font-size:2.5rem;font-weight:700;color:var(--accent);line-height:1;letter-spacing:-.04em}
+.stat-label{font-size:.8rem;color:var(--muted);margin-top:.35rem}
+.mini-chart{display:flex;align-items:flex-end;gap:4px;height:50px;margin-top:1rem}
+.bar-c{flex:1;border-radius:3px 3px 0 0;background:var(--accent-dim);transition:height .3s ease}
+.bar-c.hi{background:var(--accent)}
+.perf-row{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--border)}
+.perf-row:last-child{border:0}
+.perf-row span:last-child{font-family:var(--f-code);font-size:.85rem;color:var(--accent)}
+.glowdot{position:absolute;bottom:-30px;right:-30px;width:100px;height:100px;background:radial-gradient(circle,rgba(0,200,150,.15),transparent 70%);border-radius:50%}
+
+.compare{margin-top:3rem;border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.compare table{width:100%;border-collapse:collapse}
+.compare th,.compare td{padding:.9rem 1.2rem;text-align:left;border-bottom:1px solid var(--border)}
+.compare th{font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--surface)}
+.compare td:not(:first-child){text-align:center;font-family:var(--f-code);font-size:.88rem}
+.compare tr:last-child td{border-bottom:0}
+.compare .hi-col{background:rgba(0,200,150,.04)}
+.check{color:var(--accent)}.cross{color:var(--muted)}.partial{color:var(--yellow)}
+
+.price-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
+.pc{border:1px solid var(--border);border-radius:16px;padding:1.8rem;background:var(--surface);display:flex;flex-direction:column}
+.pc.pop{border-color:var(--accent);position:relative}
+.pc-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#000;font-size:.72rem;font-weight:700;padding:.2rem .8rem;border-radius:99px;white-space:nowrap;font-family:var(--f-code)}
+.pc-name{font-family:var(--f-code);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+.pc-price{font-size:2.6rem;font-weight:700;letter-spacing:-.04em;line-height:1;margin-bottom:.3rem}
+.pc-price span{font-size:.9rem;font-weight:400;color:var(--muted)}
+.pc-desc{font-size:.85rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.65}
+.pc-features{display:flex;flex-direction:column;gap:.5rem;flex:1;margin-bottom:1.8rem}
+.pc-features li{display:flex;align-items:center;gap:.6rem;font-size:.85rem;color:var(--muted)}
+.pc-features li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.pc-btn{display:block;text-align:center;padding:.8rem;border-radius:var(--r);font-weight:600;font-size:.88rem;border:1px solid var(--border2);color:var(--ink);transition:all .2s}
+.pc-btn:hover{border-color:var(--accent);color:var(--accent)}
+.pc.pop .pc-btn{background:var(--accent);color:#000;border-color:var(--accent)}
+.pc.pop .pc-btn:hover{background:var(--accent2)}
+
+.cta-strip{background:var(--surface2);border:1px solid var(--border2);border-radius:20px;padding:clamp(2.5rem,5vw,4rem);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-top:clamp(4rem,8vw,6rem);margin-bottom:clamp(4rem,8vw,6rem)}
+.cta-strip h2{font-size:clamp(1.8rem,2.5vw,2.8rem);letter-spacing:-.03em;max-width:22ch}
+.cta-strip h2 span{color:var(--accent)}
+
+footer{border-top:1px solid var(--border);padding:2.5rem 0 2rem;color:var(--muted);font-size:.83rem}
+.foot-row{display:flex;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.foot-logo{font-family:var(--f-code);font-weight:700;font-size:1rem;color:var(--ink)}
+.foot-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.foot-links a:hover{color:var(--ink)}
+
+.sec{padding:clamp(4rem,9vw,7rem) 0}
+.sec-lbl{font-family:var(--f-code);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+h2.sech{font-size:clamp(2rem,1.2rem+3vw,3.6rem);font-weight:700;letter-spacing:-.04em;line-height:1.05}
+.sech .muted{color:var(--muted)}
+
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.rv.on{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .bento{grid-template-columns:1fr 1fr}
+  .bc.c3,.bc.c4,.bc.c6{grid-column:span 2}
+  .price-wrap{grid-template-columns:1fr}
+  .n-links,.n-cta{display:none}
+  .burger{display:block}
+  .cta-strip{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:560px){
+  .bento{grid-template-columns:1fr}
+  .bc.c2,.bc.c3,.bc.c4,.bc.c6{grid-column:span 1}
+}
+</style>
+</head>
+<body>
+
+<nav id="fnav">
+  <div class="wrap nav-row">
+    <span class="n-logo"><span>▶</span> Forge</span>
+    <div class="n-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#compare">Compare</a>
+      <a href="#docs">Docs</a>
+    </div>
+    <a href="#pricing" class="n-cta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Get started free
+    </a>
+    <button class="burger" id="fbrgr"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mob wrap">
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#compare">Compare</a>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-label">Developer tools platform — v2.8 now live</div>
+    <h1>Ship code<br><span class="hl">3× faster.</span></h1>
+    <p class="hero-sub">Forge is the CLI toolkit that automates your deployments, manages secrets and keeps your team in sync — without the DevOps overhead.</p>
+    <div class="hero-btns">
+      <a href="#pricing" class="btn btn-g">Start for free</a>
+      <a href="#features" class="btn btn-o">See features</a>
+    </div>
+    <div class="hero-badges">
+      <div class="badge">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        No credit card needed
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        Free tier forever
+      </div>
+      <div class="badge">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        Open-source CLI
+      </div>
+    </div>
+
+    <div class="cli-demo rv">
+      <div class="cli-titlebar">
+        <div class="cli-dot r"></div>
+        <div class="cli-dot y"></div>
+        <div class="cli-dot g"></div>
+        <div class="cli-title">forge — bash — 80×24</div>
+      </div>
+      <div class="cli-body" id="cli-output">
+        <div><span class="cli-prompt">~</span> <span class="cli-cmd" id="cli-typing"></span><span class="cli-cursor" id="cli-cur"></span></div>
+        <div id="cli-lines"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="features">
+  <div class="wrap">
+    <div class="sec-lbl rv">Everything you need</div>
+    <h2 class="sech rv">Built for speed.<br><span class="muted">Designed for scale.</span></h2>
+    <div class="bento">
+      <div class="bc c3 rv">
+        <div class="bc-title">Instant deploys</div>
+        <div class="bc-desc">One command to build, test and ship to any cloud provider. Zero-downtime by default.</div>
+        <div class="bc-code"><span class="kw">forge</span> <span class="fn">deploy</span> --env <span class="str">production</span></div>
+        <div class="glowdot"></div>
+      </div>
+      <div class="bc c3 rv" style="transition-delay:.07s">
+        <div class="bc-title">Secrets vault</div>
+        <div class="bc-desc">Encrypted, versioned secrets with team-level access controls and full audit log.</div>
+        <div class="bc-code"><span class="kw">forge</span> <span class="fn">secret</span> set API_KEY <span class="str">"..."</span></div>
+      </div>
+      <div class="bc c2 rv" style="transition-delay:.14s">
+        <div class="stat-num" id="counter-deploys">0</div>
+        <div class="stat-label">Deploys today</div>
+        <div class="mini-chart" id="mini-chart"></div>
+      </div>
+      <div class="bc c2 rv" style="transition-delay:.21s">
+        <div class="bc-title">Rollbacks</div>
+        <div class="bc-desc">Instant rollback to any previous version. One command, 8 seconds.</div>
+      </div>
+      <div class="bc c2 rv" style="transition-delay:.28s">
+        <div class="stat-num" style="color:var(--accent2)">8s</div>
+        <div class="stat-label">Avg. rollback time</div>
+      </div>
+      <div class="bc c4 rv" style="transition-delay:.14s">
+        <div class="bc-title">Pipeline performance</div>
+        <div class="bc-desc" style="margin-bottom:.8rem">Last 7 deployments vs. baseline</div>
+        <div id="perf-rows"></div>
+      </div>
+      <div class="bc c2 rv" style="transition-delay:.21s">
+        <div class="bc-title">Multi-region</div>
+        <div class="bc-desc">Deploy to 18 regions simultaneously with automatic failover.</div>
+      </div>
+      <div class="bc c6 rv" style="transition-delay:.1s">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+          <div>
+            <div class="bc-title">Works with your stack</div>
+            <div class="bc-desc" style="margin-top:.3rem">Native integrations with all major platforms.</div>
+          </div>
+          <div style="display:flex;gap:.8rem;flex-wrap:wrap">
+            <span style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.5rem 1rem;font-size:.82rem;color:var(--muted)">GitHub</span>
+            <span style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.5rem 1rem;font-size:.82rem;color:var(--muted)">GitLab</span>
+            <span style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.5rem 1rem;font-size:.82rem;color:var(--muted)">AWS</span>
+            <span style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.5rem 1rem;font-size:.82rem;color:var(--muted)">Vercel</span>
+            <span style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.5rem 1rem;font-size:.82rem;color:var(--muted)">Cloudflare</span>
+            <span style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.5rem 1rem;font-size:.82rem;color:var(--muted)">Railway</span>
+            <span style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.5rem 1rem;font-size:.82rem;color:var(--muted)">Render</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="compare" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-lbl rv">Feature comparison</div>
+    <h2 class="sech rv">How Forge stacks up.</h2>
+    <div class="compare rv" style="margin-top:2.5rem">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="hi-col">Forge</th>
+            <th>Competitors</th>
+            <th>DIY scripts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Zero-config setup</td><td class="check hi-col">✓</td><td class="partial">partial</td><td class="cross">✗</td></tr>
+          <tr><td>Secrets management</td><td class="check hi-col">✓</td><td class="check">✓</td><td class="cross">✗</td></tr>
+          <tr><td>One-command rollback</td><td class="check hi-col">✓</td><td class="partial">partial</td><td class="cross">✗</td></tr>
+          <tr><td>Multi-region deploys</td><td class="check hi-col">✓</td><td class="check">✓</td><td class="cross">✗</td></tr>
+          <tr><td>Team audit log</td><td class="check hi-col">✓</td><td class="partial">paid only</td><td class="cross">✗</td></tr>
+          <tr><td>Open-source CLI</td><td class="check hi-col">✓</td><td class="cross">✗</td><td class="check">✓</td></tr>
+          <tr><td>Free tier</td><td class="check hi-col">✓</td><td class="cross">✗</td><td class="check">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="pricing">
+  <div class="wrap">
+    <div class="sec-lbl rv">Pricing</div>
+    <h2 class="sech rv">Simple, honest pricing.</h2>
+    <div class="price-wrap">
+      <div class="pc rv">
+        <div class="pc-name">Hobby</div>
+        <div class="pc-price">$0 <span>/mo</span></div>
+        <p class="pc-desc">For side projects and personal use.</p>
+        <ul class="pc-features">
+          <li>3 projects</li>
+          <li>50 deploys/month</li>
+          <li>Basic secrets vault</li>
+          <li>Community support</li>
+        </ul>
+        <a href="#" class="pc-btn">Start free</a>
+      </div>
+      <div class="pc pop rv" style="transition-delay:.08s">
+        <div class="pc-badge">Most popular</div>
+        <div class="pc-name">Pro</div>
+        <div class="pc-price">$19 <span>/mo</span></div>
+        <p class="pc-desc">For professional developers and small teams.</p>
+        <ul class="pc-features">
+          <li>Unlimited projects</li>
+          <li>Unlimited deploys</li>
+          <li>Advanced secrets + versioning</li>
+          <li>Team members (up to 5)</li>
+          <li>Audit log</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#" class="pc-btn">Start 14-day trial</a>
+      </div>
+      <div class="pc rv" style="transition-delay:.16s">
+        <div class="pc-name">Team</div>
+        <div class="pc-price">$79 <span>/mo</span></div>
+        <p class="pc-desc">For engineering teams shipping every day.</p>
+        <ul class="pc-features">
+          <li>Everything in Pro</li>
+          <li>Unlimited team members</li>
+          <li>Multi-region rollout</li>
+          <li>SSO / SAML</li>
+          <li>SLA 99.9%</li>
+          <li>Dedicated support channel</li>
+        </ul>
+        <a href="#" class="pc-btn">Contact sales</a>
+      </div>
+    </div>
+
+    <div class="cta-strip rv">
+      <h2>Start shipping <span>without the overhead.</span></h2>
+      <a href="#pricing" class="btn btn-g" style="font-size:.92rem;padding:.9rem 1.8rem">Install Forge CLI →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <span class="foot-logo">▶ Forge</span>
+      <div class="foot-links">
+        <a href="#">Docs</a>
+        <a href="#">GitHub</a>
+        <a href="#">Blog</a>
+        <a href="#">Status</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;color:var(--muted);font-size:.78rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
+      <span>© 2026 Forge Inc.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+
+var fnav=document.getElementById('fnav');
+addEventListener('scroll',function(){fnav.classList.toggle('scrolled',scrollY>8)},{passive:true});
+document.getElementById('fbrgr').onclick=function(){fnav.classList.toggle('open')};
+
+var lines=[
+  {t:'forge deploy --env production',delay:400,out:[
+    {t:'  ✓ Building project...',cls:'ok',d:700},
+    {t:'  ✓ Running tests (48 passed)',cls:'ok',d:1100},
+    {t:'  ✓ Uploading to CDN...',cls:'ok',d:1500},
+    {t:'  ✓ Deploying to prod-us-east-1',cls:'ok',d:2000},
+    {t:'  ✓ Deployed in 4.2s → https://myapp.forge.dev',cls:'ok',d:2500},
+  ]},
+];
+var typingEl=document.getElementById('cli-typing');
+var linesEl=document.getElementById('cli-lines');
+var curEl=document.getElementById('cli-cur');
+function typeCmd(cmd,cb){
+  var i=0;typingEl.textContent='';
+  var t=setInterval(function(){
+    typingEl.textContent+=cmd[i++];
+    if(i>=cmd.length){clearInterval(t);cb&&setTimeout(cb,200)}
+  },55);
+}
+function showOut(outputs,idx){
+  if(idx>=outputs.length)return;
+  setTimeout(function(){
+    var d=document.createElement('div');
+    d.className='cli-out '+outputs[idx].cls;
+    d.textContent=outputs[idx].t;
+    linesEl.appendChild(d);
+    showOut(outputs,idx+1);
+  },outputs[idx].d);
+}
+setTimeout(function(){
+  curEl.style.display='inline-block';
+  typeCmd(lines[0].t,function(){showOut(lines[0].out,0)});
+},800);
+
+var vals=[30,55,45,70,60,85,72,90,68,100];
+var mc=document.getElementById('mini-chart');
+vals.forEach(function(v,i){
+  var b=document.createElement('div');
+  b.className='bar-c'+(v>=80?' hi':'');
+  b.style.height=(v/100*50)+'px';
+  mc.appendChild(b);
+});
+
+var target=14382,cur2=0;
+var step=Math.ceil(target/60);
+var cInterval=setInterval(function(){
+  cur2=Math.min(cur2+step,target);
+  var el=document.getElementById('counter-deploys');
+  if(el)el.textContent=cur2.toLocaleString();
+  if(cur2>=target)clearInterval(cInterval);
+},30);
+
+var perfs=[
+  {name:'Build time',val:'2.1s'},
+  {name:'Test suite',val:'18.4s'},
+  {name:'Upload',val:'0.9s'},
+  {name:'Propagation',val:'1.2s'},
+];
+var pr=document.getElementById('perf-rows');
+perfs.forEach(function(p){
+  var r=document.createElement('div');
+  r.className='perf-row';
+  r.innerHTML='<span style="font-size:.85rem;color:var(--muted)">'+p.name+'</span><span>'+p.val+'</span>';
+  pr.appendChild(r);
+});
+
+if('IntersectionObserver' in window){
+  var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('on');obs.unobserve(x.target)}})},{rootMargin:'0px 0px -60px 0px',threshold:.04});
+  document.querySelectorAll('.rv').forEach(function(el){obs.observe(el)});
+}else document.querySelectorAll('.rv').forEach(function(el){el.classList.add('on')});
+</script>
+</body>
+</html>

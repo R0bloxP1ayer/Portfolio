@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paper &amp; Pigment — Watercolour for Beginners</title>
+<meta name="description" content="A self-paced watercolour course for absolute beginners. Six modules, lifetime access.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F3EE; --paper-alt:#EAE6DC; --ink:#201F1D; --ink-muted:#6C685F;
+    --accent:#4C8C4A; --accent-ink:#fff; --line:#DAD5C9;
+    --display:"Sora",sans-serif; --sans:"Manrope",sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;}
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms !important;transition-duration:.001ms !important;}}
+
+  .wrap{max-width:1000px;margin:0 auto;padding:0 clamp(1.25rem,4vw,2.5rem);}
+
+  .nav{position:sticky;top:0;z-index:20;background:rgba(245,243,238,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:1000px;margin:0 auto;padding:1.1rem clamp(1.25rem,4vw,2.5rem);display:flex;align-items:center;gap:2rem;}
+  .logo{font-family:var(--display);font-size:1.1rem;font-weight:700;margin-right:auto;}
+  .logo span{color:var(--accent);}
+  .nav-links{display:flex;gap:1.75rem;}
+  .nav-links a{font-size:.92rem;color:var(--ink-muted);}
+  .nav-links a:hover{color:var(--ink);}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:.8rem 1.5rem;border-radius:6px;font-weight:600;font-size:.92rem;cursor:pointer;font-family:var(--sans);border:1px solid transparent;}
+  .btn-solid{background:var(--accent);color:var(--accent-ink);}
+  .btn-solid:hover{background:#3E7A3D;}
+  .btn-line{border-color:var(--ink);color:var(--ink);}
+  .btn-line:hover{background:var(--ink);color:var(--paper);}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:.4rem;cursor:pointer;}
+  .burger span{width:20px;height:2px;background:var(--ink);}
+  .nav-mobile{display:none;flex-direction:column;padding:0 clamp(1.25rem,4vw,2.5rem) 1.25rem;gap:.25rem;}
+  .nav-mobile a{padding:.65rem 0;border-bottom:1px solid var(--line);font-size:1rem;}
+  .nav.open .nav-mobile{display:flex;}
+
+  .hero{padding:clamp(4rem,9vw,6.5rem) 0 clamp(3rem,7vw,5rem);}
+  .hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(2rem,5vw,3.5rem);align-items:center;}
+  .hero-kicker{color:var(--accent);font-weight:600;font-size:.95rem;}
+  .hero h1{font-size:clamp(2.4rem,1.6rem + 3.5vw,3.6rem);line-height:1.08;margin-top:.6rem;}
+  .hero-lede{margin-top:1.2rem;max-width:42ch;color:var(--ink-muted);font-size:1.08rem;}
+  .hero-actions{margin-top:1.8rem;display:flex;gap:1rem;flex-wrap:wrap;}
+  .hero-art{aspect-ratio:1;border-radius:12px;background:
+      radial-gradient(circle at 30% 30%, rgba(76,140,74,.5), transparent 55%),
+      radial-gradient(circle at 68% 62%, rgba(76,140,74,.3), transparent 50%),
+      var(--paper-alt);
+    border:1px solid var(--line);}
+
+  .learn{background:var(--paper-alt);}
+  .learn-inner{max-width:1000px;margin:0 auto;padding:clamp(3.5rem,8vw,5.5rem) clamp(1.25rem,4vw,2.5rem);}
+  .learn h2{font-size:clamp(1.6rem,1.2rem + 1.8vw,2.1rem);max-width:20ch;}
+  .learn-grid{margin-top:2.2rem;display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem 2.5rem;}
+  .learn-item{display:flex;gap:.9rem;}
+  .learn-check{flex:none;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.75rem;margin-top:.1rem;}
+  .learn-item p{color:var(--ink-muted);}
+  .learn-item strong{display:block;color:var(--ink);font-weight:600;margin-bottom:.2rem;}
+
+  .curriculum{padding:clamp(3.5rem,8vw,6rem) 0;}
+  .curriculum h2{font-size:clamp(1.6rem,1.2rem + 1.8vw,2.1rem);}
+  .mod-list{margin-top:2.2rem;display:flex;flex-direction:column;}
+  .mod{display:grid;grid-template-columns:64px 1fr;gap:1.2rem;padding:1.4rem 0;border-top:1px solid var(--line);align-items:baseline;}
+  .mod:last-child{border-bottom:1px solid var(--line);}
+  .mod-num{font-family:var(--display);font-size:1.3rem;color:var(--accent);}
+  .mod h3{font-size:1.08rem;font-weight:600;}
+  .mod p{margin-top:.35rem;color:var(--ink-muted);font-size:.95rem;}
+
+  .instructor{background:var(--paper-alt);}
+  .instructor-inner{max-width:1000px;margin:0 auto;padding:clamp(3rem,7vw,4.5rem) clamp(1.25rem,4vw,2.5rem);display:grid;grid-template-columns:auto 1fr;gap:1.6rem;align-items:center;}
+  .instructor-photo{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,#4C8C4A,#87B378);flex:none;}
+  .instructor-text p{color:var(--ink-muted);}
+  .instructor-text strong{color:var(--ink);}
+
+  .pricing{padding:clamp(3.5rem,8vw,6rem) 0;}
+  .price-card{max-width:420px;margin:2.2rem auto 0;border:1px solid var(--line);border-radius:12px;padding:2.2rem;text-align:center;}
+  .price-amt{font-family:var(--display);font-size:2.6rem;font-weight:700;}
+  .price-amt span{font-size:1rem;color:var(--ink-muted);font-family:var(--sans);font-weight:500;}
+  .price-list{margin-top:1.6rem;text-align:left;display:flex;flex-direction:column;gap:.7rem;}
+  .price-list li{display:flex;gap:.6rem;color:var(--ink-muted);font-size:.95rem;}
+  .price-list li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:.55rem;}
+  .price-card .btn{margin-top:1.8rem;width:100%;}
+
+  .faq{background:var(--paper-alt);}
+  .faq-inner{max-width:760px;margin:0 auto;padding:clamp(3.5rem,8vw,5.5rem) clamp(1.25rem,4vw,2.5rem);}
+  .faq h2{font-size:clamp(1.6rem,1.2rem + 1.8vw,2.1rem);}
+  .faq-list{margin-top:2rem;}
+  .faq-item{border-top:1px solid var(--line);}
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+  .faq-q{width:100%;text-align:left;background:none;border:none;padding:1.2rem 0;display:flex;justify-content:space-between;align-items:center;gap:1rem;cursor:pointer;font-family:var(--sans);font-size:1rem;font-weight:600;color:var(--ink);}
+  .faq-q .plus{flex:none;width:18px;height:18px;position:relative;}
+  .faq-q .plus::before,.faq-q .plus::after{content:"";position:absolute;background:var(--ink);}
+  .faq-q .plus::before{left:0;top:8px;width:18px;height:2px;}
+  .faq-q .plus::after{left:8px;top:0;width:2px;height:18px;transition:transform .2s ease;}
+  .faq-item.open .plus::after{transform:rotate(90deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .faq-a p{padding-bottom:1.2rem;color:var(--ink-muted);max-width:60ch;}
+
+  .cta-band{background:var(--ink);color:var(--paper);}
+  .cta-inner{max-width:1000px;margin:0 auto;padding:clamp(3rem,7vw,4rem) clamp(1.25rem,4vw,2.5rem);text-align:center;}
+  .cta-inner h2{color:var(--paper);font-size:clamp(1.6rem,1.2rem + 2vw,2.3rem);}
+  .cta-inner p{margin-top:.8rem;color:#B9B5AA;}
+  .cta-inner .btn{margin-top:1.6rem;}
+  .cta-inner .btn-solid:hover{background:#5C9C5A;}
+
+  .footer{padding:2.5rem clamp(1.25rem,4vw,2.5rem);display:flex;justify-content:space-between;color:var(--ink-muted);font-size:.85rem;max-width:1000px;margin:0 auto;}
+
+  @media (max-width:760px){
+    .nav-links,.nav-inner .btn-solid{display:none;}
+    .burger{display:flex;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-art{order:-1;max-width:220px;margin:0 auto;}
+    .learn-grid{grid-template-columns:1fr;}
+    .instructor-inner{grid-template-columns:1fr;text-align:center;}
+    .instructor-photo{margin:0 auto;}
+    .footer{flex-direction:column;gap:.4rem;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">Paper <span>&amp;</span> Pigment</a>
+    <nav class="nav-links">
+      <a href="#learn">What you'll learn</a>
+      <a href="#curriculum">Curriculum</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <a href="#pricing" class="btn btn-solid">Enroll now</a>
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+  <div class="nav-mobile" id="navMobile">
+    <a href="#learn">What you'll learn</a>
+    <a href="#curriculum">Curriculum</a>
+    <a href="#pricing">Pricing</a>
+  </div>
+</header>
+
+<section id="top" class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="hero-kicker">A self-paced course for absolute beginners</p>
+      <h1>Watercolour, from blank paper to your first finished piece.</h1>
+      <p class="hero-lede">Six weeks of short video lessons, done at your own pace. No drawing background needed — just paper, paint, and about twenty minutes a day.</p>
+      <div class="hero-actions">
+        <a href="#pricing" class="btn btn-solid">Enroll now</a>
+        <a href="#curriculum" class="btn btn-line">See the curriculum</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section id="learn" class="learn">
+  <div class="learn-inner">
+    <h2>What you'll be able to do</h2>
+    <div class="learn-grid">
+      <div class="learn-item">
+        <span class="learn-check">✓</span>
+        <p><strong>Control your washes</strong>Lay down flat, even colour without streaks or blooms you didn't plan.</p>
+      </div>
+      <div class="learn-item">
+        <span class="learn-check">✓</span>
+        <p><strong>Mix any colour you see</strong>Work confidently from a six-colour palette instead of buying forty tubes.</p>
+      </div>
+      <div class="learn-item">
+        <span class="learn-check">✓</span>
+        <p><strong>Paint wet-on-wet</strong>Get soft, blended edges on purpose, not by accident.</p>
+      </div>
+      <div class="learn-item">
+        <span class="learn-check">✓</span>
+        <p><strong>Finish a piece you'd frame</strong>Carry a painting from a blank page through to something complete.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="curriculum" class="curriculum">
+  <div class="wrap">
+    <h2>Five modules, at your own pace</h2>
+    <div class="mod-list">
+      <div class="mod">
+        <span class="mod-num">01</span>
+        <div><h3>Materials &amp; your first wash</h3><p>What to buy, what to skip, and laying down your first flat wash.</p></div>
+      </div>
+      <div class="mod">
+        <span class="mod-num">02</span>
+        <div><h3>Colour mixing &amp; control</h3><p>Building any colour from six tubes, and controlling how much water you're really using.</p></div>
+      </div>
+      <div class="mod">
+        <span class="mod-num">03</span>
+        <div><h3>Working wet-on-wet</h3><p>Soft blooms and blended edges, used on purpose instead of avoided.</p></div>
+      </div>
+      <div class="mod">
+        <span class="mod-num">04</span>
+        <div><h3>Light, shadow &amp; depth</h3><p>Layering washes so a flat shape starts to look like it has form.</p></div>
+      </div>
+      <div class="mod">
+        <span class="mod-num">05</span>
+        <div><h3>Composing your first piece</h3><p>Putting it together — planning, painting, and knowing when to stop.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="instructor">
+  <div class="instructor-inner">
+    <div class="instructor-photo" aria-hidden="true"></div>
+    <div class="instructor-text">
+      <p><strong>Taught by Mara Lindqvist</strong>, a working illustrator based in Leiden. She started teaching after realising most beginner courses skip straight to skill and never explain why watercolour behaves the way it does.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="pricing">
+  <div class="wrap" style="text-align:center;">
+    <h2>One price, no subscriptions</h2>
+    <div class="price-card">
+      <p class="price-amt">$149 <span>one-time</span></p>
+      <ul class="price-list">
+        <li>Lifetime access to all 5 modules</li>
+        <li>Downloadable reference sheets</li>
+        <li>Weekly live Q&amp;A, recorded</li>
+        <li>Private feedback community</li>
+      </ul>
+      <a href="mailto:hello@paperandpigment.example" class="btn btn-solid">Enroll now</a>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="faq-inner">
+    <h2>Questions</h2>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item">
+        <button class="faq-q"><span>Do I need any experience?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>None. Module one starts with how to hold the brush and load it with paint.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>What materials do I need?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>A short list is included after enrolling — most people spend under $30 to get started.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>How long do I have access?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>Lifetime access. Go at your own pace and revisit any module whenever you want.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>What if it's not for me?</span><span class="plus"></span></button>
+        <div class="faq-a"><p>Full refund within 14 days, no questions asked.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="cta-inner">
+    <h2>Your first finished painting is five modules away.</h2>
+    <p>Start today — go at whatever pace works for you.</p>
+    <a href="#pricing" class="btn btn-solid">Enroll now</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Paper &amp; Pigment</p>
+</footer>
+
+<script>
+  var nav = document.getElementById('nav');
+  var burger = document.getElementById('burger');
+  burger.addEventListener('click', function () {
+    var open = nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.querySelectorAll('.nav-mobile a').forEach(function (a) {
+    a.addEventListener('click', function () { nav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
+  });
+
+  document.querySelectorAll('.faq-item').forEach(function (item) {
+    var btn = item.querySelector('.faq-q');
+    var answer = item.querySelector('.faq-a');
+    btn.addEventListener('click', function () {
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function (openItem) {
+        openItem.classList.remove('open');
+        openItem.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+</body>
+</html>
